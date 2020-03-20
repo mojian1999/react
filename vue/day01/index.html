@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+       button{
+           width: 300px;
+           height: 100px;
+            font: 80px 宋体;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button v-bind:disabled="disabled">{{massage}}</button>
+    </div>
+    <script>
+        var timer = null;
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                massage:10,
+                disabled:true
+            },
+            mounted:function () {
+              timer = setInterval( () => {
+                  this.massage--
+                  if (this.massage == 0){
+                      this.disabled = false
+                      this.massage = "确定"
+                      clearInterval(timer)
+                  }
+              },1000)
+            }
+        })
+
+    </script>
+</body>
+</html>

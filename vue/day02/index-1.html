@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <table border="1" cellspacing="0" cellpadding="10">
+            <tr>
+                <th>{{data}}</th>
+                <td v-for="item in arr_2">{{item}}</td>
+            </tr>
+            <tr >
+                <th>{{data1}}</th>
+                <td v-for="item in arr_3">{{item}}</td>
+            </tr>
+            <tr >
+                <th>{{data2}}</th>
+                <td v-for="item in arr_4">{{item}}</td>
+            </tr>
+            <tr >
+                <th>{{data3}}</th>
+                <td v-for="item in arr">{{item}}</td>
+            </tr>
+            <tr >
+                <th>{{data4}}</th>
+                <td v-for="item in arr_1">{{item}}</td>
+            </tr>
+        </table>
+    </div>
+</body>
+    <script>
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                   data:"学号",
+                   data1:"姓名",
+                   data2:"性别",
+                   data3:'籍贯',
+                   data4:"联系方式",
+
+                  arr : ["湖南","湖北","上海"],
+                  arr_1 : [13099999999,13199999999,13299999999],
+                arr_2:[1,2,3],
+                arr_3:['xiaohong','xiaohuang','xiaohei'],
+                arr_4:["男","女","男"]
+            }
+        })
+    </script>
+</html>

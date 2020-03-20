@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		 <meta name="viewport" content="width = device-width">
+		 <meta name="referrer" content="no-referrer" /> 	
+		<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="axios.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="vue-router.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">    
+		<script src="https://unpkg.com/swiper/js/swiper.min.js"> </script>
+		<style type="text/css">
+			
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.swiper-container {
+			    width: 100%;
+				--swiper-theme-color: #FFFFFF;
+			
+			} 
+			 
+			 .swiper-wrapper img{
+			     width:100%;
+			 }  
+			 
+			 .myhead{
+			
+				 background: #F1F1F1;
+			 }
+			 
+			 .myhead span{
+				 display: inline-block;
+				 color: white;
+				 margin: 0.8rem;
+			 }
+			 
+			 .myhead input{
+				 width: 17rem;
+				 height: 1.7rem;
+				 margin-left: 0.625rem;
+				 border-radius: 0.4rem;
+			 }
+			
+			.footer{
+				position: fixed;
+				top: 92.5%;
+				width: 100%;
+			}
+			
+			.footer img:nth-of-type(1){
+				margin-top: 0.2rem;
+				width: 1.7rem;
+				height: 1.7rem;
+				margin-left: 15%;
+			}
+			
+			.footer img:nth-of-type(2){
+				margin-top: 0.2rem;
+				width: 1.7rem;
+				height: 1.7rem;
+				margin-left: 12.5%;
+			}
+			
+			.footer img:nth-of-type(3){
+				margin-top: 0.2rem;
+				width: 1.7rem;
+				height: 1.7rem;
+				margin-left: 13%;
+			}
+			
+			.footer img:nth-of-type(4){
+				margin-top: 0.2rem;
+				width: 1.7rem;
+				height: 1.7rem;
+				margin-left: 12.5%;
+			}
+			
+			
+			
+			.footer span{
+				margin-left: 15%;
+				font-size: 0.625rem;
+				margin-bottom: 1rem;
+				position: relative;
+				bottom: 0.525rem;
+				
+			}
+			
+	
+	
+			.news img{
+				margin: 0.625rem;
+				width: 30%;
+			}
+			
+			.news li{
+				display: flex;
+			}
+			.zzz{
+				margin-top: 0.625rem;
+			}
+			.imgz img{
+				width: 100%;
+				height: 15rem;
+			}
+			
+			.alls{
+				margin: 1rem;
+				margin-top: 1rem;
+			}
+			
+			.z{
+				font-size: 1.875rem;
+				color: red;
+			}
+				
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			
+			<router-link to="/"></router-link>	
+			<router-view></router-view>
+			
+		</div>
+	</body>
+	<script type="text/javascript">
+		
+			
+			var mylist = {
+					data:function(){
+						return{
+							list:[]
+						}
+					},
+			template:`<div>
+					<div class="myhead">
+						<span>厦门</span><input type="text" value="" placeholder="   输入搜索关键词" />
+					</div>
+					<div class="swiper-container">
+					    <div class="swiper-wrapper">
+					        <div class="swiper-slide"><img src="https://img.jvhv.com/images/201908/5d5f44fba0a1b.png"></div>
+					        <div class="swiper-slide"><img src="https://img.jvhv.com/images/201909/5d774e055c02e.jpg"></div>
+					        <div class="swiper-slide"><img src="https://img.jvhv.com/images/201909/5d79e7e251a52.jpg"></div>
+					    </div>
+					    <div class="swiper-pagination"></div>
+					</div>
+					<br>
+					<router-link to="/myitem/:index">
+					<div>
+						<div class="news">
+							<ul>
+								<li v-for="(items,key) in list">
+									<img :src="items.pro_img[0].url">
+									<div class="zzz">
+									<span>{{items.pro_name}}</span>
+									<div>{{items.pro_Joiner}}人已参加</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+					</router-link>
+					<div class="footer">
+						<hr>
+						<img src="https://www.jvhv.com/wap/static/images/footer_1_red.png" >
+						<img src="https://www.jvhv.com/wap/static/images/footer_6.png" >
+						<img src="https://www.jvhv.com/wap/static/images/footer_8.png" >
+						<img src="https://www.jvhv.com/wap/static/images/footer_5.png" >
+						<div><span>首页</span><span>发现</span><span>消息</span><span>我的</span></div>
+					</div>
+				</div>`,
+				
+				
+				
+				mounted:function(){
+						axios.get('index.json').then((data)=>{
+							this.list = data.data.data.CourseTop5
+							console.log(this.list)
+						}).catch((error)=>{
+						    console.log(error);
+				})
+			},
+				
+			}
+			var myitem = {
+				data:function(){
+					return {
+						item:{}
+					}
+				},
+				template:`<div>
+					<div class="imgz"><img src="https://img.jvhv.com/images/201908/5d5f44fba0a1b.png"></div>
+					<div  class="alls">
+					<h2>青少年私教</h2>
+					<div style="margin-top:0.5rem"><span>按教练约定时间上课</span></div>
+					<div style="margin-top:0.7rem"><span>有效期：不限|场地：学员自行选择预约</span></div>
+					<div style="margin-top:0.5rem"><span class="z">600</span><span style = "color:red">.0</span>元</div>
+					</div>
+				</div>
+				`,
+					
+
+					mounted:function(){
+						axios.post("https://www.jvhv.com/siteindex.php/Lesson/Detail.html").then((data)=>{
+							console.log(data);
+						})
+					},
+				
+			}
+			
+			var routes = [
+				{"path":"/","component":mylist},
+				{"path":"/myitem/:index","component":myitem}
+			]
+			var router = new VueRouter({
+				routes:routes
+			})
+			
+			
+		var vm = new Vue({
+			el:"#app",
+			data:{
+				
+			},	
+			router:router,
+		
+		})
+		
+		var mySwiper = new Swiper ('.swiper-container', {
+			
+			loop: true,
+			 autoplay: {
+				delay: 1500,
+			  },
+			  
+			pagination: {
+			    el: '.swiper-pagination',
+			  },
+		
+		 })  
+		
+		
+		
+		
+		
+		 
+	</script>
+</html>

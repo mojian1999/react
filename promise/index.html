@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.min.js"></script>
+    <style>
+        div{
+            width: 400px;
+            height: 600px;
+            /*border: 1px solid #8c8c8c;*/
+        }
+
+        span{
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="div"></div>
+</body>
+    <script>
+
+        function json(a){
+            var datas = new Promise(function (resolve,reject){
+                        $.getJSON(`0${a}.json`,function (data) {
+                        resolve(data)
+                        })
+                    },1000)
+
+           return datas
+        }
+
+
+        json(1).then(function (datas) {
+                var dataT = datas.matchedProducts
+                for (var a = 0;a < dataT.length;a++){
+                    var $span = $(`<span>序号:${dataT[a].collection_num}&nbsp;&nbsp;&nbsp;&nbsp;标题:${dataT[a].pro_title}</span><br>`);
+                    $('#div').append($span);
+                }
+                return json(2)
+        }).then(function (datas) {
+            var dataS = datas.matchedProducts
+            for (var b = 0;b < dataS.length;b++){
+                var $span1 = $(`<span>序号:${dataS[b].collection_num}&nbsp;&nbsp;&nbsp;&nbsp;标题:${dataS[b].pro_title}</span><br>`);
+                $('#div').append($span1);
+            }
+
+            return json(3)
+        }).then(function (datas) {
+            var dataF = datas.matchedProducts
+            for (var c = 0;c < dataF.length;c++){
+                var $span2 = $(`<span>序号:${dataF[c].collection_num}&nbsp;&nbsp;&nbsp;&nbsp;标题:${dataF[c].pro_title}</span><br>`);
+                $('#div').append($span2);
+            }
+        }).catch(function (data) {
+            console.log(data)
+        })
+
+
+    </script>
+</html>

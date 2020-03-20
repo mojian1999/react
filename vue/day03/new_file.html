@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="viewport" content="width=device-width" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+   *{padding:0;margin:0;}
+   ul,li{list-style: none;}
+   #app{position: absolute; top: 0; left:0; bottom:0;right:0;
+   background: lightblue;
+   }
+   #app ul{width: 100%; height: 100%; overflow: scroll;}
+   #app ul li{
+    width: 100%; height: 1000px; margin-top: 5px; background: lightgoldenrodyellow;
+   }
+   button{margin-top:62.5rem}
+  </style>
+ </head>
+ <body>
+  <div id="app">
+   <ul @scroll.passive = "scrollFun" >
+    <li v-for="(item,index) in 1">
+     <button @click="move">↑返回顶部</button>
+    </li>
+    
+   </ul>
+  </div>
+  <script type="text/javascript">
+   var vm = new Vue({
+    el:"#app",
+    data:{
+      ev:"",
+	  event:""
+	   
+    },
+    methods:{
+     //执行滚动
+     scrollFun:function(event){
+		this.event = event
+      //滚动时离上边的距离
+	  if(this.ev < 100){
+		  console.log(event.target.scrollTop)
+		  this.ev = event.target.scrollTop;
+	  } 
+	  if(vm.ev == 0){
+		  console.log(vm.event)
+	
+		  // console.log(event.target.scrollTop)
+		   vm.event.target.scrollTop = 0;
+		  vm.ev == ""
+	  }
+	  
+      
+     },
+	 
+	 move:function(){
+		 console.log(this.event)
+		 this.ev = 0
+	 	this.$options.methods.scrollFun();
+		
+		
+	 }
+   
+    }
+   })
+  </script>
+ </body>
+</html>

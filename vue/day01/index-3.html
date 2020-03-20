@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        span{
+            font: 30px 宋体;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="text" value="" placeholder="num1">
+        <input type="text" value="" placeholder="num2">
+        <button v-on:click="btn">确认</button><br>
+        <span>平均数：{{text}}</span><br>
+        <span>总和：{{text_1}}</span>
+    </div>
+    <script>
+        var inp = document.getElementsByTagName('input')
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                text:"",
+                text_1:""
+            },
+
+            methods:{
+                btn:function () {
+                    if (inp[0].value != "" && inp[1].value != "" && Number(inp[0].value) != NaN && Number(inp[1].value) != NaN){
+                        this.text = (Number(inp[0].value) + Number(inp[1].value))/2
+                        this.text_1 = Number(inp[0].value) + Number(inp[1].value)
+                    }else {
+                        alert("请重新输入")
+                        inp[0].value == ""
+                        inp[1].value == ""
+                    }
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>

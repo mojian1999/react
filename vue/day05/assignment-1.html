@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width"/>
+		<meta name="referrer" content="no-referrer" />
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="axios/axios.min.js" type="text/javascript" charset="utf-8"></script>
+		 <link rel="stylesheet" href="css/index-3.css" /> 
+	</head>
+	<body>
+		<div id="app">
+			<title2 :datat="num.num1"></title2>
+			<contents>
+				<ul>
+				    <li v-for="(itemsz,index) in dianshijuList">
+						<div>
+							<img :src="itemsz.cover.url" title="itemsz.title"/>
+							{{itemsz.title}}
+						</div>
+				    </li>
+				</ul>
+			</contents>
+			<title2 :datat="num.num2"></title2>
+			<contents>
+				<ul>
+				    <li v-for="(itemsz,index) in zongyiList">
+						<div>
+							<img :src="itemsz.cover.url" title="itemsz.title"/>
+							{{itemsz.title}}
+						</div>
+				    </li>
+				</ul>
+			</contents>
+			<title2 :datat="num.num3"></title2>
+			<contents>
+				<ul>
+				    <li v-for="(itemsz,index) in yingmeiList">
+						<div>
+							<img :src="itemsz.cover.url" title="itemsz.title"/>
+							{{itemsz.title}}
+						</div>
+				    </li>
+				</ul>
+			</contents>
+		</div>
+		
+		
+	</body>
+	<script type="text/javascript">
+		
+		
+					var contents = {
+						props:['datas'],
+						
+						template:`<div class="list">
+						<slot></slot>
+						</div>`
+					}
+					
+					var title2 = {
+						props:['datat'],
+						
+						template:`<h2>{{datat}}</h2>`
+					}
+					
+				
+		
+		var vm = new Vue({
+			el:"#app",
+			data:{
+				dianshijuList:[],
+				zongyiList:[],
+				yingmeiList:[],
+				num:{
+					"num1":"近期想看的电视剧",
+					"num2":"近期想看的综艺",
+					"num3":"近期想看的欧美",
+				}	
+			},
+			
+			
+			
+			mounted:function(){
+			    axios.get('json/dianshiju.json').then((data)=>{
+					console.log(data)
+			        this.dianshijuList = data.data.subject_collection_items;
+			    }).catch((error)=>{
+			        console.log(error);
+			    })
+				
+				axios.get('jso	n/zongyi.json').then((data)=>{
+					console.log(data)
+				    this.zongyiList = data.data.subject_collection_items;
+				}).catch((error)=>{
+				    console.log(error);
+				})
+				
+				axios.get('json/yingmei.json').then((data)=>{
+					console.log(data)
+				    this.yingmeiList = data.data.subject_collection_items;
+				}).catch((error)=>{
+				    console.log(error);
+				})
+			},
+			
+			
+			components:{
+				contents,
+				title2
+				
+			}
+		})
+	</script>
+</html>

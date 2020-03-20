@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../other/vue.js"></script>
+		<script src="../other/vuex.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			{{count}}
+			<button @click="countnumber">+++++</button>
+		</div>
+	</body>
+	<script type="text/javascript">
+		
+		var store = new Vuex.Store({
+			state:{
+				count:1
+			},
+			
+			
+			mutations:{
+				changeCount(state){
+					state.count++
+				}
+			}
+		})
+		
+		
+		
+		var vm = new Vue({
+			el:"#app",
+			data:{
+				
+			},
+			
+			computed:{
+				count(){
+					return this.$store.state.count;
+				}
+			},
+			
+			methods:{
+				countnumber:function(){
+					this.$store.commit("changeCount");
+				}
+			},
+			
+			store:store
+		})
+	</script>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        button{
+            width: 100px;
+            height: 50px;
+            margin: 10px;
+        }
+
+        #app{
+            font: 30px 宋体;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        {{text}}
+        <br>
+        <button v-on:click="upperCase">转换</button>
+    </div>
+</body>
+    <script>
+        var num = 0;
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                text:"woshiyichuanzifucuan"
+            },
+
+            methods:{
+                upperCase: function () {
+                    num++
+                    if (num % 2 != 0){
+                        this.text = this.text.toUpperCase()
+                    }else {
+                        this.text = this.text.toLowerCase()
+                    }
+
+                }
+            }
+        })
+    </script>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        div:nth-of-type(1){
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" >
+        <div v-bind:style="{background: red}">
+        </div><br>
+        <button v-on:click="background">转换</button>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                red:'red'
+            },
+            methods:{
+                background:function () {
+                    if (this.red == "red"){
+                        this.red = "green"
+                    } else {
+                        this.red = "red"
+                    }
+
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            min-width: 400px;
+            min-height: 600px;
+            /*border: 1px solid #8c8c8c;*/
+            font: 30px 宋体;
+        }
+
+        span{
+            margin: 20px;
+        }
+    </style>
+    <script src="jquery.min.js"></script>
+</head>
+<body>
+    <div id="div"></div>
+    <script>
+        function json(){
+            var datas = new Promise(function (resolve,reject){
+                $.getJSON(`01.json`,function (data) {
+                    var dataT = data.matchedProducts
+                    for (var a = 0;a < dataT.length;a++){
+                        var $span = $(`<span>序号:${dataT[a].collection_num}&nbsp;&nbsp;&nbsp;&nbsp;标题:${dataT[a].pro_title}</span><br>`);
+                        $('#div').append($span);
+                        resolve()
+                    }
+                })
+            })
+
+            return datas
+        }
+
+        function json1(){
+            var datas = new Promise(function (resolve,reject){
+                $.getJSON(`02.json`,function (data) {
+                    var dataT = data.matchedProducts
+                    for (var a = 0;a < dataT.length;a++){
+                        var $span = $(`<span>序号:${dataT[a].collection_num}&nbsp;&nbsp;&nbsp;&nbsp;标题:${dataT[a].pro_title}</span><br>`);
+                        $('#div').append($span);
+                        resolve()
+                    }
+                })
+            })
+
+            return datas
+        }
+
+        function json2(){
+            var datas = new Promise(function (resolve,reject){
+                $.getJSON(`03.json`,function (data) {
+                    var dataT = data.matchedProducts
+                    for (var a = 0;a < dataT.length;a++){
+                        var $span = $(`<span>序号:${dataT[a].collection_num}&nbsp;&nbsp;&nbsp;&nbsp;标题:${dataT[a].pro_title}</span><br>`);
+                        $('#div').append($span)
+                        resolve()
+                    }
+                })
+            })
+
+            return datas
+        }
+
+        async function f() {
+            await json();
+            await json1();
+            await json2();
+        }
+
+        f();
+    </script>
+</body>
+</html>

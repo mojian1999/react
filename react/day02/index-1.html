@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>state的使用</title>
+		<script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+		<script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+		<script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			
+		</div>
+	</body>
+	<script type="text/babel">
+		var Mystate = React.createClass({
+			
+			getInitialState(){
+				return {num:0,num1:0,num2:0}
+			},
+			
+			numUp(){
+				this.setState({
+					num:this.state.num+1
+				})
+			},
+			
+			numUpMax(n,ev){ 
+				this.setState({
+					num1:this.state.num1+n
+				})
+			},
+			
+			numUpMaxSuper(n,ev){
+				this.setState({
+					num2:this.state.num2+n
+				})
+			},
+			
+			
+			render:function(){
+				return (
+					<div>
+						<button onClick={this.numUp}>numUp</button>
+						{this.state.num}
+						<div>
+						<button onClick={this.numUpMax.bind(this,5)}>numUpMax</button>
+						{this.state.num1}
+						</div>
+						<button onClick={(ev)=>this.numUpMaxSuper(10,ev)}>numUpMaxSuper</button>
+						{this.state.num2}
+						
+						
+					</div>
+				
+				
+				
+				
+				)
+			}
+			
+			
+		})
+		
+		
+		
+		
+		
+		ReactDOM.render(<Mystate/>,document.getElementById("app"))
+	</script>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width = device-width">
+	<meta name="referrer" content="no-referrer" />
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="axios.min.js" charset="utf-8"></script> 
+	<link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">    
+	<script src="https://unpkg.com/swiper/js/swiper.min.js"> </script> 
+    <style>
+       *{
+            margin: 0;
+            padding: 0;
+        }
+
+
+
+       .swiper-container{
+            width: 23.45rem;
+            height: 12.4rem;
+        }
+		.swiper-container img{
+		     width: 23.45rem;
+		     height: 12.4rem;
+		 }
+
+        .tu{
+            display: flex;
+        }
+        .tu img{
+            width: 15%;
+            height: 15%;
+            margin: 20px;
+        }
+
+        .text{
+            font-size: 20px;
+            margin-left: 43%;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .aa img{
+            width: 9.2rem;
+            height: 5rem;
+
+        }
+
+        .bo{
+            border-bottom: 1px dotted #8c8c8c;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .aa{
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: 10px;
+			display: flex;
+        }
+
+        h5{
+            margin-left: 10px;
+            margin-top: 10px;
+        }
+
+       .box span{
+            font-size: 12px;
+            background: #8c8c8c;
+       }
+
+        .box{
+            margin-top: 14px;
+            margin-left: 10px;
+        }
+
+        .box2{
+            font-size: 12px;
+            color: #8c8c8c;
+            margin-top: 10px;
+            margin-left: 10px;
+            display: inline-block;
+        }
+
+    </style>
+</head>
+<body>
+   <div>
+		<div class="swiper-container">
+		    <div class="swiper-wrapper">
+		        <div class="swiper-slide"><img src="img/1.png"></div>
+		        <div class="swiper-slide"><img src="img/2.png"></div>
+		        <div class="swiper-slide"><img src="img/3.png"></div>
+				<div class="swiper-slide"><img src="img/4.png"></div>
+				<div class="swiper-slide"><img src="img/5.png"></div>
+		    </div>
+		    
+		</div>
+        <div class="tu">
+			<img src="img/咖啡.png"/>
+			<img src="img/密码，钥匙.png"/>
+			<img src="img/徽章.png"/>
+			<img src="img/砖石.png"/>
+        </div>
+        <hr><hr>
+        <div class="text">推荐</div>
+        <hr>
+        <div id="all"></div>
+    </div>
+	<div class="bo">
+		<div id="app">
+			<div class="aa" v-for="items in templatesss">
+			<img :src="items.proPicUrl" />
+			<div class="alls">
+					<h5>{{items.proTitle}}</h5>
+			<div class="box"><span>{{items.country}}</span></div>
+			 <div class="box2"><span>{{items.routingDat}}</span>天<span>{{items.routingNigth}}</span>晚<span>&nbsp;&nbsp;&nbsp;
+			  <span>{{items.amount}}</span>元起</span></div>
+			</div>
+		
+		</div>
+		</div>
+	</div>
+</body>
+	<script>
+			
+		 var mySwiper = new Swiper ('.swiper-container', {
+		    loop: true,
+			 autoplay: {
+			    delay: 2000,
+			  },
+
+		  })        
+ 
+	
+	var vm = new Vue({
+		el:"#app",
+		data:{
+			templatesss:[],
+			
+		},
+		mounted:function(){
+			
+			
+			
+		   
+			axios.get('houniao.json').then((data)=>{
+				this.templatesss = data.data	
+
+		    }).catch((error)=>{
+		        console.log(error);
+		    })
+			
+			
+			
+		}
+	})
+	
+		
+
+ 
+</script>
+
+
+</html>

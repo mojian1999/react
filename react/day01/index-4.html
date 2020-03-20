@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>组件内的标签渲染</title>
+		<script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+		<script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+		<script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			
+		</div>
+	</body>
+	<script type="text/babel">
+		var Aaaaa = React.createClass({
+			
+			render:function(){
+				console.log(this.props.children)
+				console.log(React.Children)
+				return(
+				<div>
+					{
+						React.Children.map(this.props.children,function(data){
+							
+							return <div>{data}</div>
+						})
+						
+					}
+				</div>
+					
+				
+				)
+				
+				
+			}
+			
+			
+		})
+		
+		
+		
+		
+		
+		
+		ReactDOM.render(<Aaaaa><h1>我是元素一</h1><h1>我是元素二</h1></Aaaaa>,document.getElementById("app"))
+	</script>
+</html>

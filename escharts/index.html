@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="echarts.min.js"></script>
+    <style type="text/css">
+        #main{
+            width:1920px;
+            height: 900px;
+        }
+    </style>
+</head>
+<body>
+    <div id="main"></div>
+    <script>
+
+        var myChart = echarts.init(document.getElementById("main"));
+
+        option = {
+            title: {
+                text: '某公司总体销售数据',
+                subtext: '服装销售',
+                left: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: '{a} <br/>{b} : {c} ({d}%)'
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋','袜子']
+            },
+            series: [
+                {
+                    name: '服装数据',
+                    type: 'pie',
+                    radius: '55%',
+                    center: ['50%', '60%'],
+                    data: [
+                        {value: 15, name: '衬衫'},
+                        {value: 20, name: '羊毛衫'},
+                        {value: 36, name: '雪纺衫'},
+                        {value: 10, name: '裤子'},
+                        {value: 10, name: '高跟鞋'},
+                        {value: 20, name: '袜子'}
+                    ],
+                    emphasis: {
+                        itemStyle: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+        myChart.setOption(option);
+    </script>
+</body>
+</html>

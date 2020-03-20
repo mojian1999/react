@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+	<meta name="viewport" content="width=device-width"/>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="axios.min.js" type="text/javascript" charset="utf-8"></script>
+    <style>
+        *{padding:0;margin:0;}
+		body{overflow-x: hidden;}
+		h2{margin: 10px}
+        ul,li{list-style:none;padding-left:10px ; width: 350px;height: 200px;}
+        .list{display: flex; flex-wrap: nowrap; flex-direction: row;overflow-x: scroll;}
+        .list li div{width: 80px; height:110px; margin:5px; background: lightblue;}
+        .list li div img{width:80px; height:100px;}
+		
+		.list1{display: flex; flex-wrap: nowrap; flex-direction: row;overflow-x: scroll;}
+		.list1 li div{width: 80px; height:110px; margin:5px; background: lightblue;}
+		.list1 li div img{width:80px; height:100px;}
+		
+		.list2{display: flex; flex-wrap: nowrap; flex-direction: row;overflow-x: scroll;}
+		.list2 li div{width: 80px; height:110px; margin:5px; background: lightblue;}
+		.list2 li div img{width:80px; height:100px;}
+    </style>
+</head>
+<body>
+<div id="app">
+    <div>
+        <h2>近期值得看的国产剧</h2>
+        <ul class="list">
+            <li v-for="item in guochanList">
+                <div>
+                    <img :src="item.cover.url" title="item.title"/>
+                    {{item.title}}
+                </div>
+
+            </li>
+        </ul>
+		<h2>近期值得看的综艺节目</h2>
+		<ul class="list1">
+		    <li v-for="item1 in zongyiList">
+		        <div>
+		            <img :src="item1.cover.url" title="item1.title"/>
+		            {{item1.title}}
+		        </div>
+		
+		    </li>
+		</ul>
+		<h2>近期值得看的英美剧</h2>
+		<ul class="list2">
+		    <li v-for="item2 in yingmeiList">
+		        <div>
+		            <img :src="item2.cover.url" title="item2.title"/>
+		            {{item2.title}}
+		        </div>
+		
+		    </li>
+		</ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            guochanList:[],
+            zongyiList:[],
+            yingmeiList:[]
+        },
+        mounted:function(){
+            axios.get('dianshiju.json').then((data)=>{
+				console.log(1)
+                this.guochanList = data.data.subject_collection_items;
+            }).catch((error)=>{
+                console.log(error);
+            })
+			
+			axios.get('zongyi.json').then((data)=>{
+				console.log(1)
+			    this.zongyiList = data.data.subject_collection_items;
+			}).catch((error)=>{
+			    console.log(error);
+			})
+			
+			axios.get('yingmei.json').then((data)=>{
+			    this.yingmeiList = data.data.subject_collection_items;
+			}).catch((error)=>{
+			    console.log(error);
+			})
+        }
+    })
+</script>
+</body>
+</html>
